@@ -1,0 +1,13 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo:latest # use the latest image.
+    container_name: mongodbforweather
+    restart: unless-stopped
+    environment: # set required env variables to access mongo
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - '7000:27017' # en el puerto 7000 de mi máquina mapeame 27017
+    volumes: # optional to preserve database after container is deleted.
+      - ./database-data:/data/db

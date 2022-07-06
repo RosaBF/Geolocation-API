@@ -1,8 +1,9 @@
 import request from 'supertest';
+import { Types } from 'mongoose';
 import userModel from '../../../../../../../../src/models/user.model';
 import app from '../../../../../../../app';
 
-describe('#modules#users#getUsersUserUseCase#tests#integration', () => {
+describe('#modules#user#getUsersUserUseCase#tests#integration', () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
@@ -11,13 +12,14 @@ describe('#modules#users#getUsersUserUseCase#tests#integration', () => {
     it('should return all the users', async () => {
       const findMock = jest.spyOn(userModel, 'find').mockResolvedValue([
         {
-          _id: '000000000000000000000000',
+          _id: new Types.ObjectId('000000000000000000000000'),
           email: '__EMAIL__',
           token: '__TOKEN__',
+          password: '__PASSWORD__',
         },
       ] as never);
 
-      const { status, body } = await request(app).get('/').send();
+      const { status, body } = await request(app).get('/user').send();
 
       expect({ status, body }).toEqual({
         status: 200,
@@ -26,6 +28,7 @@ describe('#modules#users#getUsersUserUseCase#tests#integration', () => {
             _id: '000000000000000000000000',
             email: '__EMAIL__',
             token: '__TOKEN__',
+            password: '__PASSWORD__',
           },
         ],
       });

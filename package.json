@@ -8,7 +8,9 @@
     "start": "node build/index.js",
     "start:docker": "npm build && npm start",
     "tsc": "tsc",
-    "test": "jest --collectCoverage"
+    "test": "jest --collectCoverage",
+    "test:unit": "jest test/unit/**/*.test.ts src/modules/.*/unit/.*/*.test.ts --forceExit",
+    "coverage": "nyc npm run test"
   },
   "keywords": [],
   "author": "",

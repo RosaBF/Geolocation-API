@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
-import { MongoUserRepo } from './login.user.mongo-repo';
-import userModel from '../../../models/user.model';
+import { MongoUserRepo } from '../login.user.mongo-repo';
+import userModel from '../../../../models/user.model';
 
 describe('#modules#users#userMongoRepo', () => {
   afterEach(() => {

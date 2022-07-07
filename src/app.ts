@@ -9,7 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 
 //Routes
 
-app.use('/', userRouter);
-app.use('login', userRouter);
+app.use('/user', userRouter);
+app.use('/login', userRouter);
+app.use('/register', userRouter)
 
 export default app;

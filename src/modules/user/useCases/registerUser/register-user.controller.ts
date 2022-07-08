@@ -1,18 +1,22 @@
+import { IRegisterUserDTO } from './../../dto/register-user.dto';
 import { RegisterUserErrors } from './register-user.errors';
-import { IRegisterUserUseCase } from './register-user.use-case';
+import {
+  IRegisterUserUseCase,
+  RegisterUserUseCase,
+} from './register-user.use-case';
 import { Request, Response } from 'express';
 
 export class RegisterUserController {
-  private registerUserUseCase: IRegisterUserUseCase;
+  private registerUserUseCase: RegisterUserUseCase;
 
-  constructor(registerUserUseCase: IRegisterUserUseCase) {
+  constructor(registerUserUseCase: RegisterUserUseCase) {
     this.registerUserUseCase = registerUserUseCase;
   }
 
-  public async execute(res: Response, req: Request) {
-    const newUser = {
-      email: req.body.email as string,
-      password: req.body.password as string,
+  public async execute(req: Request, res: Response) {
+    const newUser: IRegisterUserDTO = {
+      email: req.body.email,
+      password: req.body.password,
     };
 
     try {

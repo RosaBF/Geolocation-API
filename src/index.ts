@@ -3,8 +3,6 @@ import app from './app';
 import * as dbHelpers from './helpers/db';
 import config from '../config';
 
-dotenv.config();
-
 const PORT = config.PORT || 3000;
 
 dbHelpers.connect();

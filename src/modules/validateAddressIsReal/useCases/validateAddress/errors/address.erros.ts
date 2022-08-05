@@ -1,5 +1,5 @@
 import { ApplicationError } from './aplication.error';
-import { IAddressDTO } from '../../dto';
+import { IAddressDTO } from '../../../dto';
 
 
 export namespace AddressErrors {

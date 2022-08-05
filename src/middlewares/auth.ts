@@ -15,6 +15,8 @@ function verifyToken(req: Request, res: Response, next: NextFunction) {
   } catch (error) {
     res.status(401).send({ msg: 'Token not valid' });
   }
+
+  return bearerToken;
 }
 
 export { verifyToken };

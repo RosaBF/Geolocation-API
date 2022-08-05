@@ -1,34 +1,24 @@
 import { IAddressDTO } from './../dto/address.dto';
 import axios from 'axios';
 import { IAddressRepo } from './address.repo';
+import { IAddressValidated } from '../domain/addressValidated.entity';
+import config from '../../../../config';
 
 export class NominatinGeoLocationRepo implements IAddressRepo {
-  public url: string;
-
-  constructor(_url: string) {
-    this.url = process.env.NOMINATIN_URL || '';
-  }
-
-  async findOne(
-    street: string,
-    streetNumber: string,
-    town: string,
-    postalCode: string,
-    country: string
-  ): Promise<IAddressDTO | null> {
-    const urlBase = `${this.url}/search`;
-    const queryParams = {
-      street: `${streetNumber} ${street}`,
-      city: town,
-      country: country,
-      postalcode: postalCode,
-      format: 'json',
-      limit: 1,
+  public async getAddress(
+    query: IAddressDTO
+  ): Promise<IAddressValidated | null> {
+    const queryParams: IAddressDTO = {
+      street: query.street,
+      city: query.city,
+      country: query.country,
+      postalCode: query.postalCode,
+      streetNumber: query.streetNumber,
     };
 
-    const response = await axios.get(urlBase, {
-      params: queryParams,
-    });
+    const urlBase = `${config.NOMINATIN_URL}${queryParams}&format=json&limit=1`;
+
+    const response = await axios.get(urlBase);
 
     if (!response.data.length) {
       return null;
@@ -46,6 +36,8 @@ export class NominatinGeoLocationRepo implements IAddressRepo {
       lon: addressResponse.lon,
     };
 
-    return address;
+    const addressValidated: IAddressValidated = { address: address };
+
+    return addressValidated;
   }
 }

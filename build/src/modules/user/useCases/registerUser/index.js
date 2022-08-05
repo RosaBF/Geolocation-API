@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.registerUserController = void 0;
+const register_user_controller_1 = require("./register-user.controller");
+const register_user_use_case_1 = require("./register-user.use-case");
+const repos_1 = require("../../repos");
+const repo = new repos_1.MongoUserRepo();
+const useCase = new register_user_use_case_1.RegisterUserUseCase(repo);
+const registerUserController = new register_user_controller_1.RegisterUserController(useCase);
+exports.registerUserController = registerUserController;

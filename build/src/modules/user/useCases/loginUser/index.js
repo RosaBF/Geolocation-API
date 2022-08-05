@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.loginUserController = void 0;
+const login_user_controller_1 = require("./login-user.controller");
+const repos_1 = require("../../repos");
+const login_user_use_case_1 = require("./login-user.use-case");
+const repo = new repos_1.MongoUserRepo();
+const usecase = new login_user_use_case_1.LoginUserUseCase(repo);
+const loginUserController = new login_user_controller_1.LoginUserController(usecase);
+exports.loginUserController = loginUserController;

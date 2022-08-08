@@ -11,6 +11,8 @@ const config = {
   DB: process.env.DATABASE_URI,
   NOMINATIN_URL:
     process.env.NOMINATIN_URL || 'https://nominatim.openstreetmap.org/search?',
+  WEATHER_URL:
+    process.env.TIMER_WEATHER_BASE_URL || 'http://www.7timer.info/bin/api.pl?',
 };
 
 export default config;

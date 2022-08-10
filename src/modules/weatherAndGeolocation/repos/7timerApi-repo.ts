@@ -1,4 +1,4 @@
-import config from '../../../../config';
+import { IWeatherApiResponse } from './../dto/7timer-api-response.dto';
 import axios from 'axios';
 import { IWeather } from '../domain';
 import { IWeatherRepo } from './weather.repo';
@@ -10,14 +10,21 @@ export class WeatherApiRepo implements IWeatherRepo {
   ): Promise<IWeather | null> {
     const urlBase = `http://www.7timer.info/bin/api.pl?lon=${query.lon}&lat=${query.lat}&product=civil&output=json`;
 
-    const response = await axios.get<IWeather[]>(urlBase);
+    const response = await axios.get<IWeatherApiResponse[]>(urlBase);
 
-    if (!response.data.length) {
+    if (!response.data) {
       return null;
     }
 
-    const weather = response.data[0];
+    const data = response.data[0];
 
-    return weather;
+    const weatherData: IWeather = {
+      cloudCover: query.cloudCover as number,
+      temperature: query.temperature as number,
+      humidity: query.humidity as string,
+      weather: query.weather as string,
+    };
+
+    return weatherData;
   }
 }

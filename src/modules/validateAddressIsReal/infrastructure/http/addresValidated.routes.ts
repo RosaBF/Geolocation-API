@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAddressValidatedController } from '../../useCases/indext';
+import { getAddressValidatedController } from '../../useCases/index';
 
 const router = Router();
 
@@ -7,4 +7,4 @@ router.get('/', async (req, res) =>
   getAddressValidatedController.execute(req, res)
 );
 
-export { router as ValidateAddressRouter };
+export { router as validateAddressRouter };

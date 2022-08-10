@@ -16,7 +16,7 @@ export class IGetAddressValidatedController {
   public async execute(req: Request, res: Response) {
     const getAddressBody: IAddressDTO = {
       street: req.query.street as string,
-      streetNumber: req.query.streetNumber as string,
+      streetName: req.query.streetNumber as string,
       city: req.query.city as string,
       postalCode: req.query.postalCode as string,
       country: req.query.country as string,

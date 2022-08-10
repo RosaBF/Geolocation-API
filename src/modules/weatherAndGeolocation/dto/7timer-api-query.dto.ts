@@ -1,4 +1,8 @@
 export interface IWeatherApiQueryDTO {
-  lat: number;
-  lon: number;
+  cloudCover?: number;
+  temperature?: number;
+  humidity?: string;
+  weather?: string;
+  lat: string;
+  lon: string;
 }

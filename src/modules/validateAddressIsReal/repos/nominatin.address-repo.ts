@@ -1,39 +1,29 @@
-import { IAddressDTO } from './../dto/address.dto';
+import { IAddressDTO, IAddressQueryDTO } from './../dto/address.dto';
 import axios from 'axios';
 import { IAddressRepo } from './address.repo';
 import { IAddressValidated } from '../domain/addressValidated.entity';
-import config from '../../../../config';
+import { INominatinApiResponseDTO } from '../dto';
 
 export class NominatinGeoLocationRepo implements IAddressRepo {
   public async getAddress(
-    query: IAddressDTO
+    query: IAddressQueryDTO
   ): Promise<IAddressValidated | null> {
-    const queryParams: IAddressDTO = {
-      street: query.street,
-      city: query.city,
-      country: query.country,
-      postalCode: query.postalCode,
-      streetNumber: query.streetNumber,
-    };
+    const urlBase = `https://nominatim.openstreetmap.org/search?street=${query.street}&streetname=${query.streetName}&city=${query.city}&county=${query.country}&postalCode=${query.postalCode}&format=json&limit=1`;
 
-    const urlBase = `${config.NOMINATIN_URL}${queryParams}&format=json&limit=1`;
-
-    const response = await axios.get(urlBase);
+    const response = await axios.get<INominatinApiResponseDTO[]>(urlBase);
 
     if (!response.data.length) {
       return null;
     }
 
-    const addressResponse = response.data[0];
+    const dataResponse = response.data[0];
 
     const address: IAddressDTO = {
-      street: addressResponse.street,
-      streetNumber: addressResponse.streetNumber,
-      city: addressResponse.city,
-      country: addressResponse.country,
-      postalCode: addressResponse.postalCode,
-      lat: addressResponse.lat,
-      lon: addressResponse.lon,
+      street: query.street,
+      streetName: query.streetName,
+      city: query.city,
+      postalCode: query.postalCode,
+      country: query.country,
     };
 
     const addressValidated: IAddressValidated = { address: address };

@@ -2,12 +2,20 @@ import * as Joi from 'joi';
 
 export interface IAddressDTO {
   street: string;
-  streetNumber: string;
+  streetName: string;
   city: string;
   postalCode: string;
   country: string;
   lon?: string;
   lat?: string;
+}
+
+export interface IAddressQueryDTO {
+  street: string;
+  streetName: string;
+  city: string;
+  postalCode: string;
+  country: string;
 }
 
 export const validateIAddressDTOSchema = Joi.object({

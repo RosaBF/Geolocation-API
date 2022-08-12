@@ -1,9 +1,6 @@
 import { IRegisterUserDTO } from './../../dto/register-user.dto';
 import { RegisterUserErrors } from './register-user.errors';
-import {
-  IRegisterUserUseCase,
-  RegisterUserUseCase,
-} from './register-user.use-case';
+import { RegisterUserUseCase } from './register-user.use-case';
 import { Request, Response } from 'express';
 
 export class RegisterUserController {

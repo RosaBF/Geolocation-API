@@ -26,7 +26,7 @@ export class LoginUserController {
           res.status(404).send({ message: error.message });
           break;
         case LoginUserErrors.passwordInvalid:
-          res.status(403).send({ message: error.message });
+          res.status(401).send({ message: error.message });
           break;
         default:
           res.sendStatus(500);

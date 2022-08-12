@@ -13,6 +13,7 @@ const config = {
     process.env.NOMINATIN_URL || 'https://nominatim.openstreetmap.org/search?',
   WEATHER_URL:
     process.env.TIMER_WEATHER_BASE_URL || 'http://www.7timer.info/bin/api.pl?',
+  USER_CREDENTIALS: process.env.USER_CREDENTIALS || 'userCredentials',
 };
 
 export default config;

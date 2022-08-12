@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { query, Request, Response } from 'express';
 import { IAddressQueryDTO } from '../../../validateAddressIsReal/dto';
 import { AddressErrors } from '../../../validateAddressIsReal/useCases/validateAddress/errors';
 import { IAddressDTO } from '../../dto';
@@ -17,27 +17,26 @@ export class GetWeatherCoordinatesFromAddressController {
   }
 
   public async execute(req: Request, res: Response) {
-    const weatherParams: IWeatherApiQueryDTO = {
-      cloudCover: req.body.cloudCover,
-      temperature: req.body.temperature,
-      humidity: req.body.humidity,
-      weather: req.body.weather,
-      lat: req.body.lat,
-      lon: req.body.lon,
-    };
+    
+    const query = {
+      weatherParams: {
+        lat: req.body.lat,
+        lon: req.body.lon,
+      },
 
-    const addressParams: IAddressQueryDTO = {
-      street: req.query.street as string,
-      streetName: req.query.streetName as string,
-      city: req.query.city as string,
-      postalCode: req.query.postalCode as string,
-      country: req.query.country as string,
+      addressParams: {
+        street: req.query.street as string,
+        streetName: req.query.streetName as string,
+        city: req.query.city as string,
+        postalCode: req.query.postalCode as string,
+        country: req.query.country as string,
+      },
     };
     try {
       const useCaseResponse =
         await this.getWeatherCoordinatesFromAddressUseCase.execute(
-          addressParams,
-          weatherParams
+          query.addressParams,
+          query.weatherParams
         );
       res.send(useCaseResponse);
     } catch (error: any) {

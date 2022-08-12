@@ -1,0 +1,227 @@
+openapi: 3.0.0
+info:
+  description:
+    This is an rest API that allows to check the weather given the latitude and
+    longitude of an specific place
+  version: 1.0.0
+  title: The weather API
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: rosa.berned@wefox.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: user
+    description: Everything about users
+  - name: Validate address
+    description: Everyhing about address
+  - name: Weather
+    description: Everything about weather
+paths:
+  /login:
+    post:
+      tags:
+        - user
+    summary: Authenticate an user to get access token
+    consumes:
+      - application/json
+    produces:
+      - application/json
+    parameters:
+      - in: body
+        name: body
+        description: e-mail and password
+        required: true
+        schema:
+          $ref: '#/definitions/schemas/login'
+    responses:
+      '201':
+        description: 'Login succesfull'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth_token'
+      '401':
+        description: 'Invalid credentials'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/invalid_credentials'
+      '500':
+        description: 'Internal Server Error'
+
+  /address:
+    get:
+      tags:
+        - address
+    summary: Validate an address
+    parameters:
+      - name: street
+        in: query
+        required: true
+        schema:
+        type: string
+        example: 'Mantuano'
+
+      - name: streetName
+        in: query
+        required: true
+        schema:
+          type: string
+          example: prosperidad
+      - name: city
+        in: query
+        required: true
+        schema:
+        type: string
+        example: Madrid
+      - name: postalCode
+        in: query
+        required: true
+        schema:
+          type: string
+          example: '28002'
+      - name: country
+        in: query
+        required: true
+        schema:
+          type: string
+          example: Spain
+        responses:
+          '200':
+            description: ''
+            content:
+              application/json:
+                schema:
+                  $ref: '#/definitions/schemas/address'
+          '404':
+            description: 'Addres not found'
+            content:
+              application/json:
+                schema:
+                  $ref: '#/definitions/schemas/address_not_found'
+          '401':
+            description: 'Address invalid'
+            content:
+              application/json:
+                schema:
+                  $ref: '#/definitions/schemas/invalid_address'
+          '500':
+            description: 'Internal Server Error'
+
+  /weather:
+    get:
+      tags:
+        - Weather
+      summary: Get weather from address coordinates
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '63682628'
+        - name: lon
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '-87398387'
+      responses:
+        '200':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/schemas/weather'
+        '404':
+          description: Weather not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/schemas/weather_not_found'
+        '403':
+          description: invalid address
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/schemas/invalid_address'
+        '500':
+          description: 'Internal Server Error'
+
+definitions:
+  schemas:
+    login:
+      type: 'object'
+      properties:
+        email:
+          type: 'string'
+          example: 'user@user.com'
+        password:
+          type: 'string'
+          example: '896u3'
+
+    address:
+      type: 'object'
+      properties:
+        street:
+          type: 'string'
+        streetName:
+          type: 'string'
+        city:
+          type: 'string'
+        postalCode:
+          type: 'string'
+        country:
+          type: 'string'
+        latitude:
+          type: 'string'
+        longitude:
+        t ype: 'string'
+
+    weather:
+      type: 'object'
+      properties:
+        CloudCover: number
+        temperature: number
+        humidity: string
+        weather: string
+
+    auth_token:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: '1dd8a7c682a987c1e3a48e21293d58442937f7a9f647ef8643eeab030bbafbc453ed23605242cd88d3be079cfffc037a3ae2f11a29ab259a1e488de1cc33ef4e'
+        expires_in:
+          type: string
+          example: '10h'
+
+    invalid_credentials:
+      type: object
+      properties:
+        error:
+          type: string
+          example: 'Invalid credentials'
+
+    invalid_address:
+      type: object
+      properties:
+        error:
+          type: string
+          example: 'The address is invalid'
+
+    address_not_found:
+      type: object
+      properties:
+        error:
+          type: string
+          example: 'Address not found'
+
+    weather_not_found:
+      type: object
+      properties:
+        error:
+          type: string
+          example: 'Weather not found'

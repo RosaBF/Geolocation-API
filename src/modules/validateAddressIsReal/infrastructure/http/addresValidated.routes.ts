@@ -4,16 +4,16 @@ import { createClient } from 'redis';
 
 const router = Router();
 
-router.get('/address', async (req, res) =>
+router.get('/address', (req, res) =>
   getAddressValidatedController.execute(req, res)
 );
 
-const client = createClient();
+// const client = createClient();
 
-client.on('error', (err: any) => console.log('Redis Client Error', err));
+// client.on('error', (err: any) => console.log('Redis Client Error', err));
 
-await client.connect();
-await client.set('address', JSON.stringify(response));
-const value = await client.get('key');
+// await client.connect();
+// await client.set('address', JSON.stringify(response));
+// const value = await client.get('address');
 
 export { router as validateAddressRouter };

@@ -27,6 +27,7 @@ export class IGetAddressValidatedController {
       const addressResponse = await this.iGetAddresValidatedUseCase.execute(
         getAddressBody
       );
+      console.log(addressResponse);
       res.send(addressResponse);
     } catch (error: any) {
       switch (error.constructor) {

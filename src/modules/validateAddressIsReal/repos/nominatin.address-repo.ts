@@ -1,8 +1,7 @@
-import { IAddressDTO, IAddressQueryDTO } from './../dto/address.dto';
 import axios from 'axios';
 import { IAddressRepo } from './address.repo';
 import { IAddressValidated } from '../domain/addressValidated.entity';
-import { INominatinApiResponseDTO } from '../dto';
+import { IAddressQueryDTO, INominatinApiResponseDTO } from '../dto';
 
 export class NominatinGeoLocationRepo implements IAddressRepo {
   public async getAddress(
@@ -16,18 +15,19 @@ export class NominatinGeoLocationRepo implements IAddressRepo {
       return null;
     }
 
-    const dataResponse = response.data[0];
-
-    const address: IAddressDTO = {
-      street: query.street,
-      streetName: query.streetName,
-      city: query.city,
-      postalCode: query.postalCode,
-      country: query.country,
+    const dataResponse: IAddressValidated = {
+      address: { lat: response.data[0].lat, lon: response.data[0].lon },
     };
 
-    const addressValidated: IAddressValidated = { address: address };
+    // const address: IAddressDTO = {
+    //   street: query.street,
+    //   streetName: query.streetName,
+    //   city: query.city,
+    //   postalCode: query.postalCode,
+    //   country: query.country,
 
-    return addressValidated;
+    // };
+
+    return dataResponse;
   }
 }

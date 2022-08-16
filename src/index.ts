@@ -1,16 +1,7 @@
 import app from './app';
 import * as dbHelpers from './helpers/db';
 import config from '../config';
-import { createClient } from 'redis';
 
-//cache service
-// const client = createClient();
-
-// client.on('error', (err: any) => console.log('Redis Client Error', err));
-
-// await client.connect();
-// await client.set('key', 'value');
-// const value = await client.get('key');
 
 //DB connection
 dbHelpers.connect();
@@ -23,8 +14,8 @@ app.listen(PORT, () => {
 });
 
 // testing endpoint
-app.get('/ping', (_req, res) => {
-  console.log('hellooooooooo!!!!' + new Date().toLocaleDateString());
+// app.get('/ping', (_req, res) => {
+//   console.log('hellooooooooo!!!!' + new Date().toLocaleDateString());
 
-  res.send('pong');
-});
+//   res.send('pong');
+// });

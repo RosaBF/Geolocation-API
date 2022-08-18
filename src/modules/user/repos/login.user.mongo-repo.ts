@@ -1,4 +1,4 @@
-import { IUsersRepo } from './loginUser.repo';
+import { IUsersRepo } from './user.repo';
 import userModel from '../../../models/user.model';
 import { IUserDO } from '../../../models/user.model';
 import { IRegisterUserDTO } from '../dto/register-user.dto';

@@ -1,7 +1,5 @@
 
 
-GET  https://nominatim.openstreetmap.org/search?street=serrano&streetname=serrano&city=Madrid&format=json&limit=1
-
 
 
 

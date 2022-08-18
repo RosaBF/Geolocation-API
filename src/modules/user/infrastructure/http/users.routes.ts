@@ -6,7 +6,7 @@ import { registerUserController } from '../../useCases/registerUser/index';
 
 const router = Router();
 
-router.get('/user', async (req, res) => getUsersController.execute(req, res));
+router.get('/', async (req, res) => getUsersController.execute(req, res));
 router.post('/login', verifyToken, async (req, res) =>
   loginUserController.execute(req, res)
 );

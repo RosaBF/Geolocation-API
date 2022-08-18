@@ -1,14 +1,16 @@
+
 import bcrypt from 'bcrypt';
 import { IUserDO } from '../../../../models/user.model';
+import { IUser } from '../../domain';
 import { IRegisterUserDTO } from '../../dto/register-user.dto';
 import { IUsersRepo } from '../../repos';
 import { RegisterUserErrors } from './register-user.errors';
 
 export interface IRegisterUserUseCase {
-  execute(registerParams: IRegisterUserDTO): Promise<IUserDO>;
+  execute(registerParams: IRegisterUserDTO): Promise<IUser>;
 }
 
-export class RegisterUserUseCase {
+export class RegisterUserUseCase implements IRegisterUserUseCase {
   private userRepo: IUsersRepo;
 
   constructor(userRepo: IUsersRepo) {

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import config from '../../config';
+import config from '../config';
 import { ILoginUserDTO } from '../modules/user/dto/login-user.dto';
 
 function validateUserCredentials(req: Request, res: Response, next: NextFunction) {

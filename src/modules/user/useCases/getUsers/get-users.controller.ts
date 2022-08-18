@@ -8,7 +8,7 @@ class GetUsersController {
     this.getUsersUseCase = getUsersUseCase;
   }
 
-  public async execute(_req: Request, res: Response) {
+  public async execute(req: Request, res: Response) {
     const getUsersUseCaseResponse = await this.getUsersUseCase.execute();
 
     res.send(getUsersUseCaseResponse);

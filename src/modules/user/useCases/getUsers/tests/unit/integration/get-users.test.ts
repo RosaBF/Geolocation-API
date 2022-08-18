@@ -12,14 +12,14 @@ describe('#modules#user#getUsersUserUseCase#tests#integration', () => {
     it('should return all the users', async () => {
       const findMock = jest.spyOn(userModel, 'find').mockResolvedValue([
         {
-          _id: new Types.ObjectId('000000000000000000000000'),
+          _id: '000000000000000000000000',
           email: '__EMAIL__',
           token: '__TOKEN__',
           password: '__PASSWORD__',
         },
       ] as never);
 
-      const { status, body } = await request(app).get('/user').send();
+      const { status, body } = await request(app).get('/user/').send();
 
       expect({ status, body }).toEqual({
         status: 200,

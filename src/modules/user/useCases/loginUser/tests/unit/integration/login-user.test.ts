@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import userModel from '../../../../../../../models/user.model';
 import request from 'supertest';
 import app from '../../../../../../../app';
-import config from '../../../../../../../../config';
+import config from '../../../../../../../config';
 
 describe('#modules#user#loginUserUseCase#tests#integration', () => {
   afterEach(() => {

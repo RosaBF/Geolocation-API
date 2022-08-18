@@ -1,6 +1,6 @@
 import { response, Router } from 'express';
 import { getAddressValidatedController } from '../../useCases/index';
-import { createClient } from 'redis';
+
 
 const router = Router();
 

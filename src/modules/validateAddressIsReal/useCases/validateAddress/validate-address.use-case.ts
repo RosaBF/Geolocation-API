@@ -1,3 +1,4 @@
+import { IAddressQueryDTO } from './../../dto/address.dto';
 import { IAddressValidated } from '../../domain/addressValidated.entity';
 import { IAddressDTO } from '../../dto';
 import { IAddressRepo } from '../../repos/address.repo';
@@ -14,7 +15,7 @@ export class GetValidateAddressUseCase implements IGetAddresValidatedUseCase {
     this.addressRepo = addressRepo;
   }
 
-  public async execute(query: IAddressDTO): Promise<IAddressValidated> {
+  public async execute(query: IAddressQueryDTO): Promise<IAddressValidated> {
     const address = await this.addressRepo.getAddress(query);
 
     if (!address) {

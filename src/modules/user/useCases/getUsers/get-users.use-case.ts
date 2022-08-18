@@ -1,9 +1,9 @@
-import { IUserDO } from '../../../../models/user.model';
-import { IUsersRepo } from '../../repos/loginUser.repo'
+import { IUser } from '../../domain/user.entity'
+import { IUsersRepo } from '../../repos/user.repo'
 
 
 export interface IGetUsersUseCase {
-    execute(): Promise<IUserDO[]>;
+    execute(): Promise<IUser[]>;
 }
 
 class GetUsersUseCase implements IGetUsersUseCase{
@@ -13,7 +13,7 @@ class GetUsersUseCase implements IGetUsersUseCase{
         this.usersRepo = usersRepo;
     }
 
-    public async execute(): Promise<IUserDO[]> {
+    public async execute(): Promise<IUser[]> {
         return this.usersRepo.getAllUsers();
     }
 }

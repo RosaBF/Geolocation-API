@@ -12,9 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 //Routes
 
 app.use('/user', userRouter);
-app.use('/login', userRouter);
-app.use('/register', userRouter);
-app.use(validateAddressRouter);
+app.use('/address', validateAddressRouter);
 app.use('/weather', weatherRoute);
 
 app.get('/oiyoiy', (_req, res) => {

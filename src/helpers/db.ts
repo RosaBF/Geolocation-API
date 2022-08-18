@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 let database: mongoose.Connection;
-const DATABASE_URI = 'mongodbforweather://localhost:7000';
+const DATABASE_URI = 'mongodb://localhost:7000';
 
 export function connect() {
   if (database) {

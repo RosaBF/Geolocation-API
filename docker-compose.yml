@@ -7,12 +7,12 @@ services:
     restart: always
     environment: # set required env variables to access mongo
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_PASSWORD: admin
     ports:
       - '7000:27017' # en el puerto 7000 de mi máquina mapeame 27017
     volumes: # optional to preserve database after container is deleted.
-      - ./mongodbforweather:/data/db
-    
+      - ./mongodb/data:/data/db
+
     # redis:
     #     image: redis
     #     container_name: weather-api-redis
@@ -20,4 +20,3 @@ services:
     #         - 6379:6379
     #     entrypoint: redis-server --appendonly yes
     #     restart: always
-

@@ -1,3 +1,4 @@
+
 import { Schema } from 'mongoose';
 import { IUser } from '../../domain';
 

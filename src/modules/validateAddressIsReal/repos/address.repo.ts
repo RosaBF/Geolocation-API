@@ -1,7 +1,6 @@
-
+import { IAddressQueryDTO } from './../dto/address.dto';
 import { IAddressValidated } from '../domain/addressValidated.entity';
-import { IAddressDTO } from '../dto';
 
 export interface IAddressRepo {
-  getAddress(query: IAddressDTO): Promise<IAddressValidated | null>;
+  getAddress(query: IAddressQueryDTO): Promise<IAddressValidated | null>;
 }

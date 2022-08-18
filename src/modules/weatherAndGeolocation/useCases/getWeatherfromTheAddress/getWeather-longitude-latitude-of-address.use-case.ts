@@ -3,7 +3,10 @@ import { IWeather } from './../../domain/weather.entity';
 import { NominatinGeoLocationRepo } from '../../../validateAddressIsReal/repos';
 import { AddressErrors } from '../../../validateAddressIsReal/useCases/validateAddress/errors';
 import { IWeatherRepo } from '../../repos/weather.repo';
-import { IAddressDTO } from '../../../validateAddressIsReal/dto';
+import {
+  IAddressDTO,
+  IAddressQueryDTO,
+} from '../../../validateAddressIsReal/dto';
 
 export interface IGetWeatherCoordinatesFromAddress {
   execute(
@@ -27,7 +30,7 @@ export class GetWeatherCoordinatesFromAddressUseCase
   }
 
   public async execute(
-    query: IAddressDTO,
+    query: IAddressQueryDTO,
     coordinates: IWeatherApiQueryDTO
   ): Promise<IWeather | null> {
     const address = await this.addressRepo.getAddress(query);
@@ -42,7 +45,7 @@ export class GetWeatherCoordinatesFromAddressUseCase
       lon: coordinates.lon,
     };
 
-    const locationCoordinates: IAddressDTO = {
+    const locationCoordinates: IAddressQueryDTO = {
       lat: query.lat,
       lon: query.lon,
       street: query.street,

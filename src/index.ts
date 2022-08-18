@@ -1,6 +1,6 @@
 import app from './app';
 import * as dbHelpers from './helpers/db';
-import config from '../config';
+import config from './config';
 
 
 //DB connection

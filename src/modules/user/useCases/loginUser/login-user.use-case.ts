@@ -2,9 +2,9 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { IAccessTokenDTO } from './../../dto/access-token.dto';
 import { ILoginUserDTO } from '../../dto/login-user.dto';
-import { IUsersRepo } from '../../repos/loginUser.repo';
+import { IUsersRepo } from '../../repos/user.repo';
 import { LoginUserErrors } from './login-user.errors';
-import config from '../../../../../config';
+import config from '../../../../config';
 
 export interface ILoginUserUseCase {
   execute(loginParams: ILoginUserDTO): Promise<IAccessTokenDTO>;

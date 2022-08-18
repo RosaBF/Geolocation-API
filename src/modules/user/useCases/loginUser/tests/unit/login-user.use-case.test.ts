@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { MongoUserRepo } from '../../../../repos';
 import { LoginUserUseCase } from '../../login-user.use-case';
 import { LoginUserErrors } from '../../login-user.errors';
+import config from '../../../../../../config';
 
 describe('#modules#users#LoginUsersUseCase', () => {
   afterEach(() => {
@@ -12,6 +13,7 @@ describe('#modules#users#LoginUsersUseCase', () => {
 
   describe('#execute', () => {
     it('should login the user', async () => {
+      const tokenGenerated = config.tokenKeyGenerated;
       const repo = new MongoUserRepo();
       const usecase = new LoginUserUseCase(repo);
       const getUserByEmailMock = jest
@@ -55,7 +57,7 @@ describe('#modules#users#LoginUsersUseCase', () => {
             email: '__EMAIL__',
             id: new Types.ObjectId('000000000000000000000000'),
           },
-          'tokenkey',
+          tokenGenerated,
 
           {
             expiresIn: '10h',

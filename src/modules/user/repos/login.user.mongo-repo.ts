@@ -2,6 +2,7 @@ import { IUsersRepo } from './user.repo';
 import userModel from '../../../models/user.model';
 import { IUserDO } from '../../../models/user.model';
 import { IRegisterUserDTO } from '../dto/register-user.dto';
+import { not } from 'joi';
 
 class MongoUserRepo implements IUsersRepo {
   public async getAllUsers(): Promise<IUserDO[]> {
@@ -20,7 +21,8 @@ class MongoUserRepo implements IUsersRepo {
     id: string,
     token: string
   ): Promise<IUserDO | null> {
-    return userModel.findByIdAndUpdate(id, { token });
+    const userDowithToken = userModel.findByIdAndUpdate(id, { token });
+    return userDowithToken; 
   }
 }
 

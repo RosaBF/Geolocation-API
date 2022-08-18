@@ -7,7 +7,7 @@ const config = {
   tokenKey: process.env.TOKENKEY || 'tokenkey',
   tokenKeyGenerated:
     process.env.TOKENGENERATED ||
-    '1dd8a7c682a987c1e3a48e21293d58442937f7a9f647ef8643eeab030bbafbc453ed23605242cd88d3be079cfffc037a3ae2f11a29ab259a1e488de1cc33ef4e',
+    'c9060cdaf3e71e89420b5d847293ab4277dc2e5480184b51f6454e90e189c0e4dcce13a73329d0a15562d1e574da653c54b6d195fa4f0ac5ad96e0c44ab2659c',
   DB: process.env.DATABASE_URI,
   NOMINATIN_URL:
     process.env.NOMINATIN_URL || 'https://nominatim.openstreetmap.org/search?',

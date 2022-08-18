@@ -36,7 +36,7 @@ export class LoginUserUseCase implements ILoginUserUseCase {
 
     const token = jwt.sign(
       { id: userFound._id, email: userFound.email },
-      config.tokenKey,
+      config.tokenKeyGenerated,
       {
         expiresIn: '10h',
       }

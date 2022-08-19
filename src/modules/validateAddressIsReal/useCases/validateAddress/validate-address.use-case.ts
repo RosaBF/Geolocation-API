@@ -5,7 +5,7 @@ import { IAddressRepo } from '../../repos/address.repo';
 import { AddressErrors } from './errors/address.erros';
 
 export interface IGetAddresValidatedUseCase {
-  execute(query: IAddressDTO): Promise<IAddressValidated>;
+  execute(query: IAddressQueryDTO): Promise<IAddressValidated>;
 }
 
 export class GetValidateAddressUseCase implements IGetAddresValidatedUseCase {

@@ -6,8 +6,9 @@ services:
     container_name: mongodbforweather
     restart: always
     environment: # set required env variables to access mongo
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: admin
+    #   MONGO_INITDB_ROOT_USERNAME: admin
+    #   MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: api_weather
     ports:
       - '7000:27017' # en el puerto 7000 de mi máquina mapeame 27017
     volumes: # optional to preserve database after container is deleted.

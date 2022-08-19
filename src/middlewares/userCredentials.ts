@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../config';
-import { ILoginUserDTO } from '../modules/user/dto/login-user.dto';
+import { ILoginUserDTO } from '../modules/users/dto/login-user.dto';
 
 function validateUserCredentials(req: Request, res: Response, next: NextFunction) {
   const userLoginParams: ILoginUserDTO = {

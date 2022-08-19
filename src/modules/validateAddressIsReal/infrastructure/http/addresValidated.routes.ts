@@ -1,12 +1,9 @@
 import { response, Router } from 'express';
 import { getAddressValidatedController } from '../../useCases/index';
 
-
 const router = Router();
 
-router.get('/address', (req, res) =>
-  getAddressValidatedController.execute(req, res)
-);
+router.get('/', (req, res) => getAddressValidatedController.execute(req, res));
 
 // const client = createClient();
 

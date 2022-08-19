@@ -1,5 +1,5 @@
 import {
-  IAddressDTO,
+  IAddressQueryDTO,
   validateIAddressDTOSchema,
 } from './../../dto/address.dto';
 import { IGetAddresValidatedUseCase } from './validate-address.use-case';
@@ -14,7 +14,7 @@ export class IGetAddressValidatedController {
   }
 
   public async execute(req: Request, res: Response) {
-    const getAddressBody: IAddressDTO = {
+    const getAddressBody: IAddressQueryDTO = {
       street: req.query.street as string,
       streetName: req.query.streetNumber as string,
       city: req.query.city as string,
@@ -29,6 +29,7 @@ export class IGetAddressValidatedController {
       );
       console.log(addressResponse);
       res.send(addressResponse);
+      console.log(addressResponse);
     } catch (error: any) {
       switch (error.constructor) {
         case AddressErrors.AddressNotFound:
@@ -42,7 +43,7 @@ export class IGetAddressValidatedController {
       }
     }
   }
-  public async validateAddress(addressBody: IAddressDTO) {
+  public async validateAddress(addressBody: IAddressQueryDTO) {
     const { error } = await validateIAddressDTOSchema.validateAsync(
       addressBody
     );

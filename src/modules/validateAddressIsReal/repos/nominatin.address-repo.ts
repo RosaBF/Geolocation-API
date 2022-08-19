@@ -15,10 +15,19 @@ export class NominatinGeoLocationRepo implements IAddressRepo {
       return null;
     }
 
-    const dataResponse: IAddressValidated = {
-      address: { lat: response.data[0].lat, lon: response.data[0].lon },
-    };
+    // const dataResponse: IAddressValidated = {
+    //   address: { lat: response.data[0].lat, lon: response.data[0].lon },
+    // };
 
+    const dataResponse: IAddressValidated = {
+      address: {
+        street: query.street,
+        streetName: query.streetName,
+        city: query.city,
+        postalCode: query.postalCode,
+        country: query.country,
+      },
+    };
     // const address: IAddressDTO = {
     //   street: query.street,
     //   streetName: query.streetName,
@@ -27,7 +36,7 @@ export class NominatinGeoLocationRepo implements IAddressRepo {
     //   country: query.country,
 
     // };
-
+    console.log('ggggggggggggggg', dataResponse);
     return dataResponse;
   }
 }

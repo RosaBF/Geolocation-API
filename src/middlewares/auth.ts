@@ -10,7 +10,7 @@ function verifyToken(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    jwt.verify(bearerToken, config.tokenKeyGenerated);
+    jwt.verify(bearerToken, config.tokenKey);
     next();
   } catch (error) {
     res.status(401).send({ msg: 'Token not valid' });

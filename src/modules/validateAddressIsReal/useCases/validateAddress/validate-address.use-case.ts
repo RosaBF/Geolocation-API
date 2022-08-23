@@ -1,6 +1,5 @@
 import { IAddressQueryDTO } from './../../dto/address.dto';
 import { IAddressValidated } from '../../domain/addressValidated.entity';
-import { IAddressDTO } from '../../dto';
 import { IAddressRepo } from '../../repos/address.repo';
 import { AddressErrors } from './errors/address.erros';
 

@@ -1,5 +1,5 @@
 export interface IWeatherApiQueryDTO {
-  cloudCover?: number;
+  cloudcover?: number;
   temperature?: number;
   humidity?: string;
   weather?: string;

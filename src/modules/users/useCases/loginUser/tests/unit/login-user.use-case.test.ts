@@ -13,7 +13,6 @@ describe('#modules#users#LoginUsersUseCase', () => {
 
   describe('#execute', () => {
     it('should login the user', async () => {
-      const tokenGenerated = config.tokenKeyGenerated;
       const repo = new MongoUserRepo();
       const usecase = new LoginUserUseCase(repo);
       const getUserByEmailMock = jest
@@ -57,7 +56,7 @@ describe('#modules#users#LoginUsersUseCase', () => {
             email: '__EMAIL__',
             id: new Types.ObjectId('000000000000000000000000'),
           },
-          tokenGenerated,
+          'tokenkey',
 
           {
             expiresIn: '10h',

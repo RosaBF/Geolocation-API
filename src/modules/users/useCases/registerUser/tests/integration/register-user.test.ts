@@ -25,7 +25,7 @@ describe('#modules#users#registerUserrUseCase#tests#integration', () => {
       } as never);
 
       const { status, body } = await request(app)
-        .post('/user/register/')
+        .post('/users/register/')
         .send({ email: '__EMAIL__', password: '__PASSWORD__' });
 
       expect({ status, body }).toEqual({
@@ -49,7 +49,7 @@ describe('#modules#users#registerUserrUseCase#tests#integration', () => {
         .spyOn(userModel, 'findOne')
         .mockRejectedValue(null);
       const { status, body } = await request(app)
-        .post('/user/register/')
+        .post('/users/register/')
         .send({ email: '__EMAIL__', password: '__PASSWORD__' });
 
       expect({ status, body }).toEqual({

@@ -4,7 +4,7 @@ import { verifyToken } from '../../../../middlewares/auth';
 import { validateUserCredentials } from '../../../../middlewares/userCredentials';
 
 const router = Router();
-router.get('/', verifyToken, validateUserCredentials, async (req, res) =>
+router.get('/', validateUserCredentials, async (req, res) =>
   getWeatherCoordinatesFromAddressController.execute(req, res)
 );
 

@@ -7,36 +7,25 @@ export class NominatinGeoLocationRepo implements IAddressRepo {
   public async getAddress(
     query: IAddressQueryDTO
   ): Promise<IAddressValidated | null> {
-    const urlBase = `https://nominatim.openstreetmap.org/search?street=${query.street}&streetname=${query.streetName}&city=${query.city}&county=${query.country}&postalCode=${query.postalCode}&format=json&limit=1`;
+    const urlBase = `https://nominatim.openstreetmap.org/search?housenumber=${query.streetNumber}street=${query.street}&city=${query.city}&country=${query.country}&postalcode=${query.postalCode}&format=json&limit=1`;
 
     const response = await axios.get<INominatinApiResponseDTO[]>(urlBase);
+
+    const dataResponse: IAddressValidated = {
+      addressCoordinates: {
+        lat: response.data[0].lat,
+        lon: response.data[0].lon,
+      },
+    };
+
+    if (dataResponse) {
+      response.status === 200;
+    }
 
     if (!response.data.length) {
       return null;
     }
 
-    // const dataResponse: IAddressValidated = {
-    //   address: { lat: response.data[0].lat, lon: response.data[0].lon },
-    // };
-
-    const dataResponse: IAddressValidated = {
-      address: {
-        street: query.street,
-        streetName: query.streetName,
-        city: query.city,
-        postalCode: query.postalCode,
-        country: query.country,
-      },
-    };
-    // const address: IAddressDTO = {
-    //   street: query.street,
-    //   streetName: query.streetName,
-    //   city: query.city,
-    //   postalCode: query.postalCode,
-    //   country: query.country,
-
-    // };
-    console.log('ggggggggggggggg', dataResponse);
     return dataResponse;
   }
 }

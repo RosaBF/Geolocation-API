@@ -1,6 +1,10 @@
 export interface IWeather {
-  cloudCover: number;
-  temperature: number;
-  humidity: string;
-  weather: string;
+  weather: {
+    cloudcover?: number;
+    temperature?: number;
+    humidity?: string;
+    weather?: string;
+    lat?: string;
+    lon?: string;
+  };
 }

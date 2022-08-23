@@ -19,7 +19,7 @@ describe('#modules#user#getUsersUserUseCase#tests#integration', () => {
         },
       ] as never);
 
-      const { status, body } = await request(app).get('/user/').send();
+      const { status, body } = await request(app).get('/users/').send();
 
       expect({ status, body }).toEqual({
         status: 200,

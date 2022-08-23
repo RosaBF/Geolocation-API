@@ -12,19 +12,24 @@ export class WeatherApiRepo implements IWeatherRepo {
 
     const response = await axios.get<IWeatherApiResponse[]>(urlBase);
 
-    if (!response.data) {
+    if (!response.data[0].dataseries[0]) {
       return null;
     }
 
-    const data = response.data[0];
+    if (response.data[0].dataseries[0]) {
+      response.status === 200;
+    }
 
-    const weatherData: IWeather = {
-      cloudCover: query.cloudCover as number,
-      temperature: query.temperature as number,
-      humidity: query.humidity as string,
-      weather: query.weather as string,
+    const weatherResponse: IWeather = {
+      weather: {
+        cloudcover: response.data[0].dataseries[0].cloudcover,
+        temperature: response.data[0].dataseries[0].temp2m,
+        humidity: response.data[0].dataseries[0].rh2m,
+        weather: response.data[0].dataseries[0].weather,
+      },
     };
 
-    return weatherData;
+    console.log('uuuuuuuuuuuuuuuuuu', weatherResponse);
+    return weatherResponse;
   }
 }

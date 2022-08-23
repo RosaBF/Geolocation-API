@@ -16,7 +16,6 @@ export class IGetAddressValidatedController {
   public async execute(req: Request, res: Response) {
     const getAddressBody: IAddressQueryDTO = {
       street: req.query.street as string,
-      streetName: req.query.streetNumber as string,
       city: req.query.city as string,
       postalCode: req.query.postalCode as string,
       country: req.query.country as string,
@@ -29,7 +28,7 @@ export class IGetAddressValidatedController {
       );
       console.log(addressResponse);
       res.send(addressResponse);
-      console.log(addressResponse);
+      console.log('0000000000000000000', addressResponse);
     } catch (error: any) {
       switch (error.constructor) {
         case AddressErrors.AddressNotFound:

@@ -2,8 +2,6 @@ import { Types } from 'mongoose';
 import { MongoUserRepo } from '../../../../repos/login.user.mongo-repo';
 import { LoginUserUseCase } from '../../login-user.use-case';
 import { LoginUserErrors } from '../../login-user.errors';
-import { LoginUserController } from '../../login-user.controller';
-import { loginUserController } from '../..';
 
 describe('#modules#users#LoginUserController', () => {
   afterEach(() => {

@@ -30,24 +30,24 @@ export class GetWeatherCoordinatesFromAddressUseCase
   }
 
   public async execute(
-    query: IAddressQueryDTO,
-    coordinates: IWeatherApiQueryDTO
+    coordinates: IAddressQueryDTO,
+    weather: IWeatherApiQueryDTO
   ): Promise<IWeather | null> {
-    const address = await this.addressRepo.getAddress(query);
-    const weather = await this.weatherRepo.getWeather(coordinates);
+    // const address = await this.addressRepo.getAddress(query);
+
+    if (!coordinates) {
+      throw new AddressErrors.AddressNotFound();
+    }
+    const weatherResponse = await this.weatherRepo.getWeather(weather);
 
     // const weatherCoordinates: IWeatherApiQueryDTO = {
     //   lat: coordinates.lat,
     //   lon: coordinates.lon,
     // };
 
-    if (!address) {
-      throw new AddressErrors.AddressNotFound();
-    }
-
     // const weatherCheckedWithLatandLonOfAddress =
     //   locationCoordinates === weatherCoordinates ? weather : null;
 
-    return weather;
+    return weatherResponse;
   }
 }

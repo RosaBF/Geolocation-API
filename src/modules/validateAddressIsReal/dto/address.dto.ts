@@ -11,11 +11,11 @@ export interface IAddressDTO {
 }
 
 export interface IAddressQueryDTO {
-  street: string;
+  street?: string;
   streetNumber?: string;
-  city: string;
-  postalCode: string;
-  country: string;
+  city?: string;
+  postalCode?: string;
+  country?: string;
   lon?: string;
   lat?: string;
 }

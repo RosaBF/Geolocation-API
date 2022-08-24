@@ -3,6 +3,6 @@ export interface IWeatherApiQueryDTO {
   temperature?: number;
   humidity?: string;
   weather?: string;
-  lat: string;
-  lon: string;
+  lat?: string;
+  lon?: string;
 }

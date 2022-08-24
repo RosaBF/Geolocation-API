@@ -19,17 +19,17 @@
 
 1. Build the docker container
 
-````sh
-      docker compose up
-      ```
+```sh
+  npm run start
+```
 
-The database have been build in the docker container:
+2. The database have been build in the docker container:
 
 ```sh
-     mongodb://localhost:7000/api_weather
-````
+   mongodb://localhost:7000/api_weather
+```
 
-### Architecture
+### Architecture - DDD
 
 ```
 

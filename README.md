@@ -20,13 +20,38 @@
 1. Build the docker container
 
 ```sh
-  npm run start
+  docker compose up
 ```
 
-2. The database have been build in the docker container:
+2. The database has been built in the docker container.
+   To connect it with a mongo client, please use this URL
 
 ```sh
    mongodb://localhost:7000/api_weather
+```
+
+**Database**
+
+1. Open `mongodbforweather` database and create a collection named `users`.
+
+2. Create an USER
+
+```sh
+  POSTMAN
+
+
+POST http://localhost:3000/users/register
+
+Copy and paste this example to register your first user:
+
+  body:
+{
+
+"email": "frances.lynn@gmail.com",
+
+"password": "1234"
+
+}
 ```
 
 ### Architecture - DDD

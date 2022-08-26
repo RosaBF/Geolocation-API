@@ -1,53 +1,42 @@
+import { IAddressCoordinates } from '../../../validateAddressIsReal/domain/addressCoordinates.entity';
+import { WeatherApiRepo } from '../../repos/7timerApi-repo';
 import { IWeatherApiQueryDTO } from './../../dto/7timer-api-query.dto';
 import { IWeather } from './../../domain/weather.entity';
 import { NominatinGeoLocationRepo } from '../../../validateAddressIsReal/repos';
 import { AddressErrors } from '../../../validateAddressIsReal/useCases/validateAddress/errors';
-import { IWeatherRepo } from '../../repos/weather.repo';
-import {
-  IAddressDTO,
-  IAddressQueryDTO,
-} from '../../../validateAddressIsReal/dto';
+import { IAddressQueryDTO } from '../../../validateAddressIsReal/dto';
 
 export interface IGetWeatherCoordinatesFromAddress {
-  execute(
-    query: IAddressQueryDTO,
-    coordinates: IWeatherApiQueryDTO
-  ): Promise<IWeather | null>;
+  execute(addressCoordinates: IAddressQueryDTO): Promise<IWeather | null>;
 }
 
 export class GetWeatherCoordinatesFromAddressUseCase
   implements IGetWeatherCoordinatesFromAddress
 {
   addressRepo: NominatinGeoLocationRepo;
-  weatherRepo: IWeatherRepo;
+  weatherRepo: WeatherApiRepo;
 
   constructor(
     addressRepo: NominatinGeoLocationRepo,
-    weatherRepo: IWeatherRepo
+    weatherRepo: WeatherApiRepo
   ) {
     this.addressRepo = addressRepo;
     this.weatherRepo = weatherRepo;
   }
 
-  public async execute(
-    coordinates: IAddressQueryDTO,
-    weather: IWeatherApiQueryDTO
-  ): Promise<IWeather | null> {
-    // const address = await this.addressRepo.getAddress(query);
+  public async execute(address: IAddressQueryDTO): Promise<IWeather | null> {
+    const addressCoordinates = await this.addressRepo.getAddress(address);
 
-    if (!coordinates) {
+    const result: IWeatherApiQueryDTO = {
+      lat: addressCoordinates?.lat,
+      lon: addressCoordinates?.lon,
+    };
+    const weatherResponse = this.weatherRepo.getWeather(result);
+
+    if (!addressCoordinates) {
       throw new AddressErrors.AddressNotFound();
     }
-    const weatherResponse = await this.weatherRepo.getWeather(weather);
-
-    // const weatherCoordinates: IWeatherApiQueryDTO = {
-    //   lat: coordinates.lat,
-    //   lon: coordinates.lon,
-    // };
-
-    // const weatherCheckedWithLatandLonOfAddress =
-    //   locationCoordinates === weatherCoordinates ? weather : null;
-
+    console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww', weatherResponse);
     return weatherResponse;
   }
 }

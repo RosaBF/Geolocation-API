@@ -1,9 +1,9 @@
-import { IAddressValidated } from './../modules/validateAddressIsReal/domain/addressValidated.entity';
+import { IAddressCoordinates } from '../modules/validateAddressIsReal/domain/addressCoordinates.entity';
 import { model, Document } from 'mongoose';
 import addressSchema from '../modules/validateAddressIsReal/do/schemas/address.schema';
 
-export interface IAddressValidatedDO extends IAddressValidated, Document {}
+export interface IAddressValidatedDO extends IAddressCoordinates, Document {}
 
-const addressModel = model<IAddressValidated>('Address', addressSchema);
+const addressModel = model<IAddressCoordinates>('Address', addressSchema);
 
 export default addressModel;

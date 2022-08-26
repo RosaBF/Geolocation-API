@@ -1,5 +1,4 @@
 import { ApplicationError } from './aplication.error';
-import { IAddressDTO } from '../../../dto';
 
 export namespace AddressErrors {
   export class AddressInvalid extends ApplicationError {

@@ -1,40 +1,14 @@
-import { IAddressValidated } from './../../domain/addressValidated.entity';
+import { IAddressCoordinates } from '../../domain/addressCoordinates.entity';
 import { Schema } from 'mongoose';
 
-const addressSchema = new Schema<IAddressValidated>({
-  addressCoordinates: {
-    street: {
-      type: String,
-      required: false,
-    },
-
-    streetNumber: {
-      type: String,
-      required: false,
-    },
-
-    city: {
-      type: String,
-      reqired: false,
-    },
-
-    postalCode: {
-      type: String,
-      reqired: false,
-    },
-
-    country: {
-      type: String,
-      reqired: false,
-    },
-    lon: {
-      type: String,
-      reqired: false,
-    },
-    lat: {
-      type: String,
-      reqired: false,
-    },
+const addressSchema = new Schema<IAddressCoordinates>({
+  lon: {
+    type: String,
+    reqired: false,
+  },
+  lat: {
+    type: String,
+    reqired: false,
   },
 });
 

@@ -1,10 +1,10 @@
 import { IAddressQueryDTO } from './../../dto/address.dto';
-import { IAddressValidated } from '../../domain/addressValidated.entity';
+import { IAddressCoordinates } from '../../domain/addressCoordinates.entity';
 import { IAddressRepo } from '../../repos/address.repo';
 import { AddressErrors } from './errors/address.erros';
 
 export interface IGetAddresValidatedUseCase {
-  execute(query: IAddressQueryDTO): Promise<IAddressValidated>;
+  execute(query: IAddressQueryDTO): Promise<IAddressCoordinates>;
 }
 
 export class GetValidateAddressUseCase implements IGetAddresValidatedUseCase {
@@ -14,7 +14,7 @@ export class GetValidateAddressUseCase implements IGetAddresValidatedUseCase {
     this.addressRepo = addressRepo;
   }
 
-  public async execute(query: IAddressQueryDTO): Promise<IAddressValidated> {
+  public async execute(query: IAddressQueryDTO): Promise<IAddressCoordinates> {
     const address = await this.addressRepo.getAddress(query);
 
     if (!address) {

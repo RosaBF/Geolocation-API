@@ -1,15 +1,5 @@
 import * as Joi from 'joi';
 
-export interface IAddressDTO {
-  street?: string;
-  streetNumber?: string;
-  city?: string;
-  postalCode?: string;
-  country?: string;
-  lon?: string;
-  lat?: string;
-}
-
 export interface IAddressQueryDTO {
   street?: string;
   streetNumber?: string;
@@ -20,7 +10,7 @@ export interface IAddressQueryDTO {
   lat?: string;
 }
 
-export const validateIAddressDTOSchema = Joi.object({
+export const validateIAddressQueryDTOchema = Joi.object({
   street: Joi.string().min(3).max(25),
   streetNumber: Joi.string().min(3).max(25),
   city: Joi.string().min(1).max(25),

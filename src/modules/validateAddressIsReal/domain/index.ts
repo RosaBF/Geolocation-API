@@ -1,1 +1,1 @@
-export * from './addressValidated.entity';
+export * from './addressCoordinates.entity';

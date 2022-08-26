@@ -14,10 +14,8 @@ describe('#modules#weatherAndGeolocation#weatherApiRepo', () => {
       const getMock = jest.spyOn(axios, 'get').mockResolvedValue({ data: [] });
 
       const query: IWeatherApiQueryDTO = {
-        cloudcover: 890,
-        temperature: 46764,
-        humidity: '__HUMIDITY__',
-        weather: '__WEATHER__',
+        lat: '__LATITUDE__',
+        lon: '__LONGITUDE__',
       };
 
       const ret = await repo.getWeather(query);
@@ -50,10 +48,8 @@ describe('#modules#weatherAndGeolocation#weatherApiRepo', () => {
       });
 
       const query: IWeatherApiQueryDTO = {
-        cloudcover: 890,
-        temperature: 46764,
-        humidity: '__HUMIDITY__',
-        weather: '__WEATHER__',
+        lat: '__LATITUDE__',
+        lon: '__LONGITUDE__',
       };
 
       const ret = await repo.getWeather(query);

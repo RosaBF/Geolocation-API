@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../config';
 
+// Authorization: Bearer <token>
+
 function verifyToken(req: Request, res: Response, next: NextFunction) {
   const bearerToken = req.headers.authorization;
 

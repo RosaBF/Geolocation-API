@@ -21,8 +21,8 @@ class MongoUserRepo implements IUsersRepo {
     id: string,
     token: string
   ): Promise<IUserDO | null> {
-    const userDowithToken = userModel.findByIdAndUpdate(id, { token });
-    return userDowithToken; 
+    const userDoWithToken = userModel.findByIdAndUpdate(id, { token });
+    return userDoWithToken; 
   }
 }
 

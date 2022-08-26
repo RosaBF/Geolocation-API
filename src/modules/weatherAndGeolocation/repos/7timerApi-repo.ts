@@ -21,12 +21,10 @@ export class WeatherApiRepo implements IWeatherRepo {
     }
 
     const weatherResponse: IWeather = {
-      weather: {
-        cloudcover: response.data[0].dataseries[0].cloudcover,
-        temperature: response.data[0].dataseries[0].temp2m,
-        humidity: response.data[0].dataseries[0].rh2m,
-        weather: response.data[0].dataseries[0].weather,
-      },
+      cloudcover: response.data[0].dataseries[0].cloudcover,
+      temperature: response.data[0].dataseries[0].temp2m,
+      humidity: response.data[0].dataseries[0].rh2m,
+      weather: response.data[0].dataseries[0].weather,
     };
 
     console.log('uuuuuuuuuuuuuuuuuu', weatherResponse);

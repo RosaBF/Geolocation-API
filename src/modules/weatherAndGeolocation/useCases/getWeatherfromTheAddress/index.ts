@@ -5,6 +5,7 @@ import { GetWeatherCoordinatesFromAddressController } from './getWeather-longitu
 
 const weatherRepo = new WeatherApiRepo();
 const addressRepo = new NominatinGeoLocationRepo();
+
 const useCase = new GetWeatherCoordinatesFromAddressUseCase(
   addressRepo,
   weatherRepo

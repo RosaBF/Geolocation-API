@@ -55,10 +55,8 @@ describe('#modules#geoLocation#geoLocationNominatinRepo', () => {
       });
 
       expect(ret).toEqual({
-        addressCoordinates: {
-          lat: '__LATITUDE__',
-          lon: '__LONGITUDE__',
-        },
+        lat: '__LATITUDE__',
+        lon: '__LONGITUDE__',
       });
       expect(getMock.mock.calls).toEqual([
         [

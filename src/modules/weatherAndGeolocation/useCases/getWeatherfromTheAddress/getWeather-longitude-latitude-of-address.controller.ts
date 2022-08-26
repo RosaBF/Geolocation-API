@@ -1,4 +1,5 @@
-import { query, Request, Response } from 'express';
+import { IAddressQueryDTO } from './../../../validateAddressIsReal/dto/address.dto';
+import { Request, Response } from 'express';
 import { AddressErrors } from '../../../validateAddressIsReal/useCases/validateAddress/errors';
 import { weatherNotFoundError } from './errors';
 import { GetWeatherCoordinatesFromAddressUseCase } from './getWeather-longitude-latitude-of-address.use-case';
@@ -14,26 +15,13 @@ export class GetWeatherCoordinatesFromAddressController {
   }
 
   public async execute(req: Request, res: Response) {
-    const query = {
-      addressParams: {
-        street: req.query.street as string,
-        streetNumber: req.query.streetName as string,
-        city: req.query.city as string,
-        postalCode: req.query.postalCode as string,
-        country: req.query.country as string,
-      },
-
-      weatherParams: {
-        lat: req.body.lat,
-        lon: req.body.lon,
-      },
+    const query: IAddressQueryDTO = {
+      lat: req.query.lat as string,
+      lon: req.query.lon as string,
     };
     try {
       const useCaseResponse =
-        await this.getWeatherCoordinatesFromAddressUseCase.execute(
-          query.addressParams,
-          query.weatherParams
-        );
+        await this.getWeatherCoordinatesFromAddressUseCase.execute(query);
 
       res.send(useCaseResponse);
 

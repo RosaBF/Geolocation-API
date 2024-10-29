@@ -1,4 +1,4 @@
-# the-API
+# Geolocation-API
 
 ### Installation
 
